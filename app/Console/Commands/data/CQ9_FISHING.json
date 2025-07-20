@@ -1,0 +1,81 @@
+{
+    "code": 0,
+    "message": "",
+    "provider_games": [
+        {
+            "game_code": "AT01",
+            "game_name": "OneShotFishing",
+            "game_type": "FISHING",
+            "image_url": "https://images.gscplusmd.com/statics/production/images/games/1009/FISHING/AT01.png",
+            "product_id": 1187,
+            "product_code": 1009,
+            "support_currency": "JPY,GBP,CLP,LAK,MMK2,NGN,MAD,MYR,BDT,TRY,AED,CNY,THB,KES,RUB,USDT,NPR,IDR2,KHR,BND,VND2,INR,SEK,ZAR,CAD,IDR,KRW,EUR,COP,BRL,SGD,MXN,VND,MMK,USD,HKD,AUD,NOK,PKR,PHP",
+            "status": "ACTIVATED"
+        },
+        {
+            "game_code": "GO02",
+            "game_name": "Hero Fishing",
+            "game_type": "FISHING",
+            "image_url": "https://images.gscplusmd.com/statics/production/images/games/1009/FISHING/GO02.png",
+            "product_id": 1187,
+            "product_code": 1009,
+            "support_currency": "JPY,GBP,CLP,LAK,MMK2,NGN,MAD,MYR,BDT,TRY,AED,CNY,THB,KES,RUB,USDT,NPR,IDR2,KHR,BND,VND2,INR,SEK,ZAR,CAD,IDR,KRW,EUR,COP,BRL,SGD,MXN,VND,MMK,USD,HKD,AUD,NOK,PKR,PHP",
+            "status": "ACTIVATED"
+        },
+        {
+            "game_code": "AB3",
+            "game_name": "Paradise",
+            "game_type": "FISHING",
+            "image_url": "https://images.gscplusmd.com/statics/production/images/games/1009/FISHING/AB3.png",
+            "product_id": 1187,
+            "product_code": 1009,
+            "support_currency": "JPY,GBP,CLP,LAK,MMK2,NGN,MAD,MYR,BDT,TRY,AED,CNY,THB,KES,RUB,USDT,NPR,KHR,BND,VND2,INR,SEK,ZAR,CAD,KRW,EUR,COP,BRL,SGD,MXN,VND,MMK,USD,HKD,AUD,NOK,PKR,PHP",
+            "status": "ACTIVATED"
+        },
+        {
+            "game_code": "AT05",
+            "game_name": "LuckyFishing",
+            "game_type": "FISHING",
+            "image_url": "https://images.gscplusmd.com/statics/production/images/games/1009/FISHING/AT05.png",
+            "product_id": 1187,
+            "product_code": 1009,
+            "support_currency": "JPY,GBP,CLP,LAK,MMK2,NGN,MAD,MYR,BDT,TRY,AED,CNY,THB,KES,RUB,USDT,NPR,KHR,BND,VND2,INR,SEK,ZAR,CAD,KRW,EUR,COP,BRL,SGD,MXN,VND,MMK,USD,HKD,AUD,NOK,PKR,PHP",
+            "status": "ACTIVATED"
+        },
+        {
+            "game_code": "CC1001",
+            "game_name": "Happy Insect",
+            "game_type": "FISHING",
+            "image_url": "https://images.gscplusmd.com/statics/production/images/games/1009/FISHING/CC1001.png",
+            "product_id": 1187,
+            "product_code": 1009,
+            "support_currency": "CNY",
+            "status": "DEACTIVATED"
+        },
+        {
+            "game_code": "GO05",
+            "game_name": "Onestick Fishing",
+            "game_type": "FISHING",
+            "image_url": "https://images.gscplusmd.com/statics/production/images/games/1009/FISHING/GO05.png",
+            "product_id": 1187,
+            "product_code": 1009,
+            "support_currency": "JPY,GBP,CLP,LAK,MMK2,NGN,MAD,MYR,BDT,TRY,AED,CNY,THB,KES,RUB,USDT,NPR,IDR2,KHR,BND,VND2,INR,SEK,ZAR,CAD,IDR,KRW,EUR,COP,BRL,SGD,MXN,VND,MMK,USD,HKD,AUD,NOK,PKR,PHP",
+            "status": "ACTIVATED"
+        },
+        {
+            "game_code": "GO06",
+            "game_name": "Paradise 2",
+            "game_type": "FISHING",
+            "image_url": "https://images.gscplusmd.com/statics/production/images/games/1009/FISHING/GO06.png",
+            "product_id": 1187,
+            "product_code": 1009,
+            "support_currency": "JPY,GBP,CLP,LAK,MMK2,NGN,MAD,MYR,BDT,TRY,AED,CNY,THB,KES,RUB,USDT,NPR,IDR2,KHR,BND,VND2,INR,SEK,ZAR,CAD,IDR,KRW,EUR,COP,BRL,SGD,MXN,VND,MMK,USD,HKD,AUD,NOK,PKR,PHP",
+            "status": "ACTIVATED"
+        }
+    ],
+    "pagination": {
+        "size": 0,
+        "offset": 0,
+        "total": "7"
+    }
+}
