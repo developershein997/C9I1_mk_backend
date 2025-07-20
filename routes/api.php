@@ -87,14 +87,7 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::post('withdrawfinicial', [WithDrawRequestController::class, 'FinicalWithdraw']);
     Route::get('withdrawlogfinicial', [WithDrawRequestController::class, 'log']);
 
-    Route::get('contact', [ContactController::class, 'get']);
-    Route::get('promotion', [PromotionController::class, 'index']);
-    Route::get('winnerText', [BannerController::class, 'winnerText']);
-    Route::get('banner_Text', [BannerController::class, 'bannerText']);
-    Route::get('popup-ads-banner', [BannerController::class, 'AdsBannerIndex']);
-    Route::get('banner', [BannerController::class, 'index']);
-    Route::get('videoads', [BannerController::class, 'ApiVideoads']);
-    Route::get('toptenwithdraw', [BannerController::class, 'TopTen']);
+    
 
     // Player game logs
     Route::get('/player/game-logs', [GameLogController::class, 'index']);
@@ -110,6 +103,15 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
 
 
 });
+
+Route::get('contact', [ContactController::class, 'get']);
+    Route::get('promotion', [PromotionController::class, 'index']);
+    Route::get('winnerText', [BannerController::class, 'winnerText']);
+    Route::get('banner_Text', [BannerController::class, 'bannerText']);
+    Route::get('popup-ads-banner', [BannerController::class, 'AdsBannerIndex']);
+    Route::get('banner', [BannerController::class, 'index']);
+    Route::get('videoads', [BannerController::class, 'ApiVideoads']);
+    Route::get('toptenwithdraw', [BannerController::class, 'TopTen']);
 
 // games
 Route::get('/game_types', [GSCPlusProviderController::class, 'gameTypes']);
