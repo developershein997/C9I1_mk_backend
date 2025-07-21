@@ -201,7 +201,7 @@ class SubAccountController extends Controller
         // return $randomString;
         $randomNumber = mt_rand(10000000, 99999999);
 
-        return 'SAG'.$randomNumber;
+        return 'MKS'.$randomNumber;
     }
 
     public function permission($id)
