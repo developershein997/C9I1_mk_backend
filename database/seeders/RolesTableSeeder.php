@@ -11,7 +11,6 @@ class RolesTableSeeder extends Seeder
     {
         $roles = [
             ['title' => 'Owner',         'created_at' => now(), 'updated_at' => now()],
-            ['title' => 'Master',        'created_at' => now(), 'updated_at' => now()],
             ['title' => 'Agent',         'created_at' => now(), 'updated_at' => now()],
             ['title' => 'SubAgent',      'created_at' => now(), 'updated_at' => now()],
             ['title' => 'Player',        'created_at' => now(), 'updated_at' => now()],
