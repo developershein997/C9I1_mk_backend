@@ -25,7 +25,7 @@ class AuthController extends Controller
 {
     use HttpResponses;
 
-    private const PLAYER_ROLE = 5;
+    private const PLAYER_ROLE = 4;
 
     public function login(LoginRequest $request)
     {
