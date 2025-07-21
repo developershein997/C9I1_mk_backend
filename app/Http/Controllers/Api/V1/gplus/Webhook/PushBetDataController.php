@@ -21,7 +21,7 @@ class PushBetDataController extends Controller
         try {
             $request->validate([
                 'operator_code' => 'required|string',
-                'transactions' => 'required|array',
+                'wagers' => 'required|array',
             ]);
         } catch (\Illuminate\Validation\ValidationException $e) {
             Log::warning('Push Bet Data API Validation Failed', ['errors' => $e->errors()]);
@@ -51,7 +51,7 @@ class PushBetDataController extends Controller
             }
         }
 
-        foreach ($request->transactions as $tx) {
+        foreach ($request->wagers as $tx) {
             $memberAccount = $tx['member_account'] ?? null;
             $user = User::where('user_name', $memberAccount)->first();
 
