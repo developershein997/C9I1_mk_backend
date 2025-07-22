@@ -51,23 +51,25 @@
                             <table id="videoTable" class="table table-striped table-hover">
                                 <thead>
                                     <tr>
-                                        <th class="text-center">Preview</th>
-                                        <th class="text-center">Actions</th>
+                                        <th class="text-center">Preview and actions</th>
+                                        {{-- <th class="text-center">Actions</th> --}}
                                     </tr>
                                 </thead>
                                 <tbody>
                                     @forelse ($videos as $video)
                                         <tr>
                                             <td class="text-center">
-                                                <video id="video_{{ $video->id }}" class="video-js vjs-default-skin"
-                                                    controls preload="auto" width="480" height="270" data-setup="{}">
-                                                    <source src="{{ asset('assets/img/video_ads/' . $video->video_ads) }}"
-                                                        type="video/mp4">
-                                                    Your browser does not support the video tag.
-                                                </video>
-                                            </td>
-                                            <td class="text-center">
-                                                <a href="{{ route('admin.video-upload.edit', $video->id) }}"
+                                             <div class="row">
+                                                   <div class="col-lg-6 col-md-6 col-sm-12 col-12">
+                                                        <video id="video_{{ $video->id }}" class="video-js vjs-default-skin d-flex justify-content-center"
+                                                        controls preload="auto"  data-setup="{}">
+                                                        <source src="{{ asset('assets/img/video_ads/' . $video->video_ads) }}"
+                                                            type="video/mp4">
+                                                        Your browser does not support the video tag.
+                                                            </video>
+                                                    </div>
+                                                <div class="col-lg-6 col-md-6 col-sm-12 col-12 mt-lg-5 mt-md-5 mt-sm-2 mt-2 ">
+                                                        <a href="{{ route('admin.video-upload.edit', $video->id) }}"
                                                     class="btn btn-sm btn-warning">Edit</a>
                                                 <form action="{{ route('admin.video-upload.destroy', $video->id) }}"
                                                     method="POST" style="display:inline;">
@@ -76,7 +78,10 @@
                                                     <button type="submit" class="btn btn-sm btn-danger"
                                                         onclick="return confirm('Are you sure you want to delete this video?')">Delete</button>
                                                 </form>
+                                                </div>
+                                             </div>
                                             </td>
+
                                         </tr>
                                     @empty
                                         <tr>

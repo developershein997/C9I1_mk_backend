@@ -61,7 +61,7 @@
             @endif
 
             <!-- User Counts -->
-            @if($totalOwner)
+            {{-- @if($totalOwner)
             <div class="col-lg-3 col-6">
                 <div class="small-box bg-maroon">
                     <div class="inner">
@@ -73,7 +73,7 @@
                     </div>
                 </div>
             </div>
-            @endif
+            @endif --}}
 
             @if($totalAgent)
             <div class="col-lg-3 col-6">

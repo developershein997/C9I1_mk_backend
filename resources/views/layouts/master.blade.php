@@ -69,7 +69,7 @@
             <ul class="navbar-nav ml-auto">
 
                 <!--begin::Messages Dropdown Menu-->
-                
+
                 <!--end::Messages Dropdown Menu-->
                 <li class="nav-item">
                     <a class="nav-link"
@@ -81,11 +81,11 @@
                     </a>
                 </li>
 
-                <li class="nav-item">
+                {{-- <li class="nav-item">
                     <a class="nav-link" data-toggle="dropdown" href="#">
                         | Balance: {{ number_format(auth()->user()->wallet->balanceFloat, 2) }}
                     </a>
-                </li>
+                </li> --}}
 
                 <li class="nav-item dropdown">
                     <a class="nav-link" href="#"
@@ -111,7 +111,7 @@
             <img src="{{ asset('img/city_slot_logo.png') }}" alt="AdminLTE Logo"
                 class="brand-image img-circle elevation-3" style="opacity: .8">
             <span class="brand-text font-weight-light">MONEYKING</span>
-            </a> 
+            </a>
             <!-- Brand Logo -->
 
             <!-- <a href="{{ route('home') }}" class="brand-link">
@@ -137,9 +137,9 @@
                             </a>
                         </li>
 
-                       
-                       
-                    
+
+
+
                         @can('agent_index')
                             <li class="nav-item">
                                 <a href="{{ route('admin.agent.index') }}"
@@ -217,7 +217,7 @@
                             </a>
                         </li>
                         @endcan
-                       
+
                         @can('agent_access')
                             <li class="nav-item">
                                 <a href="{{ route('admin.subacc.index') }}"
@@ -247,7 +247,7 @@
                             </a>
                         </li>
 
-                       
+
                         @endcan
                         @can('player_view')
                             <li class="nav-item">
@@ -278,7 +278,7 @@
                                     </p>
                                 </a>
                             </li> -->
-                        
+
                         @endcan
 
                         @can('player_view')
@@ -292,7 +292,7 @@
                                     </p>
                                 </a>
                             </li>
-                           
+
                         @endcan
                         @can('owner_access')
                             <li
@@ -376,7 +376,7 @@
                                             </a>
                                         </li>
 
-                                   
+
                                 </ul>
                             </li> -->
                         @endcan
@@ -394,7 +394,7 @@
                                     </p>
                                 </a>
                                 <ul class="nav nav-treeview">
-                                    
+
 
                                 <li class="nav-item">
                                             <a href="{{ route('admin.twod.bet-slip-list') }}"
@@ -424,7 +424,7 @@
                         @endcan
 
                         <!-- agent 2d -->
-                        
+
                         <li
                             class="nav-item">
                             <a href="#" class="nav-link">
@@ -526,7 +526,7 @@
                                     </p>
                                 </a>
                                 <ul class="nav nav-treeview">
-                                    
+
 
                                         <li class="nav-item">
                                                 <a href="{{ route('admin.shan.player.report') }}"
@@ -536,7 +536,7 @@
                                             </a>
                                         </li>
 
-                                    
+
                                 </ul>
                             </li> -->
                                 @endcan
@@ -634,7 +634,7 @@
         <aside class="control-sidebar control-sidebar-dark">
         </aside>
     </div>
-    
+
     <script src="{{ asset('plugins/jquery/jquery.min.js') }}"></script>
     <script src="{{ asset('plugins/jquery-ui/jquery-ui.min.js') }}"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
@@ -699,8 +699,8 @@
             })
         });
     </script>
-    
-    
+
+
 
 </body>
 

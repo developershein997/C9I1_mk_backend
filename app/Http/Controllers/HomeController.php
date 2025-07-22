@@ -81,7 +81,7 @@ class HomeController extends Controller
             'role' => $roleTitle,
             'totalBalance' => $totalBalance->balance ?? 0,
             'playerBalance' => $playerBalance / 100,
-            'totalOwner' => $userCounts['totalOwner'] ?? 0,
+            // 'totalOwner' => $userCounts['totalOwner'] ?? 0,
             'totalAgent' => $userCounts['totalAgent'] ?? 0,
             'totalSubAgent' => $userCounts['totalSubAgent'] ?? 0,
             'totalPlayer' => $userCounts['totalPlayer'] ?? 0,
