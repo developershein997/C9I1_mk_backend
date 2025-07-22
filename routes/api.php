@@ -87,12 +87,12 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::post('withdrawfinicial', [WithDrawRequestController::class, 'FinicalWithdraw']);
     Route::get('withdrawlogfinicial', [WithDrawRequestController::class, 'log']);
 
-    
+
 
     // Player game logs
     Route::get('/player/game-logs', [GameLogController::class, 'index']);
     Route::get('user', [AuthController::class, 'getUser']);
-    // 2d route 
+    // 2d route
     Route::post('/twod-bet', [TwoDigitBetController::class, 'store']);
     Route::get('/twod-bet-slips', [TwoDigitBetController::class, 'myBetSlips']);
     // evening-twod-bet-slips
@@ -101,10 +101,10 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     // shan launch game
     Route::post('shan-launch-game', [ShanLaunchGameController::class, 'launch']);
 
-
+Route::get('contact', [ContactController::class, 'get']);
 });
 
-Route::get('contact', [ContactController::class, 'get']);
+
     Route::get('promotion', [PromotionController::class, 'index']);
     Route::get('winnerText', [BannerController::class, 'winnerText']);
     Route::get('banner_Text', [BannerController::class, 'bannerText']);
