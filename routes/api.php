@@ -17,7 +17,7 @@ use App\Http\Controllers\Api\V1\Game\GSCPlusProviderController;
 use App\Http\Controllers\Api\V1\Game\LaunchGameController;
 use App\Http\Controllers\Api\V1\Game\ProviderTransactionCallbackController;
 use App\Http\Controllers\Api\V1\Game\ShanLaunchGameController;
-use App\Http\Controllers\Api\V1\Game\ShanPlayerHistoryController;
+//use App\Http\Controllers\Api\V1\Game\ShanPlayerHistoryController;
 use App\Http\Controllers\Api\V1\gplus\Webhook\DepositController;
 use App\Http\Controllers\Api\V1\gplus\Webhook\GameListController;
 use App\Http\Controllers\Api\V1\gplus\Webhook\GetBalanceController;
@@ -121,9 +121,9 @@ Route::get('/game_lists/{type}/{provider}', [GSCPlusProviderController::class, '
 Route::get('/game_lists/{type}/{productcode}', [GSCPlusProviderController::class, 'NewgameLists']);
 Route::get('/hot_game_lists', [GSCPlusProviderController::class, 'hotGameLists']);
 
-Route::group(['prefix' => 'shanreport', 'middleware' => ['auth:sanctum']], function () {
-    Route::get('player-history', [ShanPlayerHistoryController::class, 'getPlayerHistory']);
-});
+// Route::group(['prefix' => 'shanreport', 'middleware' => ['auth:sanctum']], function () {
+//     Route::get('player-history', [ShanPlayerHistoryController::class, 'getPlayerHistory']);
+// });
 
 Route::group(['prefix' => 'shan'], function () {
     Route::post('getbalance', [ShanGetBalanceController::class, 'getBalance']);
