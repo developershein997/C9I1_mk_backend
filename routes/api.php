@@ -47,7 +47,7 @@ use App\Http\Controllers\Api\V1\DirectLaunchGameController;
 */
 
 // admin login
-Route::post('/admin/login', [AdminLoginController::class, 'login']);
+//Route::post('/admin/login', [AdminLoginController::class, 'login']);
 
 Route::post('/login', [AuthController::class, 'login']);
 Route::post('/register', [AuthController::class, 'register']);
