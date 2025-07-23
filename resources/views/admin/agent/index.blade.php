@@ -47,7 +47,7 @@
                                 @if (isset($users) && count($users) > 0)
                                     @foreach ($users as $user)
                                         <tr class="text-center">
-                                            <td>{{ $loop->iteration }}</td>
+                                            <td>{{ $loop->iteration + ($users->currentPage() - 1) * $users->perPage() }}</td>
                                             <td>{{ $user->name }}</td>
                                             <td>{{ $user->user_name }}</td>
                                             <td>{{ $user->referral_code }}</td>
@@ -111,6 +111,9 @@
                                 @endif
                             </tbody>
                         </table>
+                        <div class="d-flex justify-content-end mt-3">
+    {{ $users->links() }}
+</div>
                           </div>
                     </div> <!-- /.card-body -->
                 </div> <!-- /.card -->
