@@ -296,27 +296,48 @@ class WithdrawController extends Controller
 
                     // Check for insufficient funds based on *projected* balance falling below *zero*
                     // OR falling below your defined minimum allowed balance (e.g., 1000)
-                    if ($projectedBalance < 0 || $projectedBalance < $minimumAllowedBalance) {
-                        Log::warning('WithdrawController: Insufficient balance detected (projected balance too low)', [
-                            'member_account' => $memberAccount,
-                            'current_balance' => $beforeTransactionBalance,
-                            'amount_to_deduct' => $convertedAmount,
-                            'projected_balance' => $projectedBalance,
-                            'minimum_allowed_balance' => $minimumAllowedBalance
-                        ]);
-                        // Manually set response for insufficient balance
+                    // if ($projectedBalance < 0 || $projectedBalance < $minimumAllowedBalance) {
+                    //     Log::warning('WithdrawController: Insufficient balance detected (projected balance too low)', [
+                    //         'member_account' => $memberAccount,
+                    //         'current_balance' => $beforeTransactionBalance,
+                    //         'amount_to_deduct' => $convertedAmount,
+                    //         'projected_balance' => $projectedBalance,
+                    //         'minimum_allowed_balance' => $minimumAllowedBalance
+                    //     ]);
+                    //     // Manually set response for insufficient balance
+                    //     $responseData[] = [
+                    //         'member_account' => $memberAccount,
+                    //         'product_code' => (int) $productCode,
+                    //         'before_balance' => $this->formatBalance($beforeTransactionBalance, $request->currency),
+                    //         'balance' => $this->formatBalance($beforeTransactionBalance, $request->currency), // Balance doesn't change
+                    //         'code' => SeamlessWalletCode::InsufficientBalance->value,
+                    //         'message' => 'Insufficient Balance',
+                    //     ];
+                    //     DB::commit(); // Commit the transaction to release locks, but no wallet change
+                    //     // Pass $memberAccount to logPlaceBet to ensure it's logged
+                    //     $this->logPlaceBet($batchRequest, $request, $tx, 'failed', $request->request_time, 'Insufficient Balance', $beforeTransactionBalance, $beforeTransactionBalance);
+                    //     continue; // Skip to next transaction in batch
+                    // }
+
+                    if ($beforeTransactionBalance < $convertedAmount) {
+                        $transactionCode = SeamlessWalletCode::InsufficientBalance->value;
+                        $transactionMessage = 'Insufficient balance';
+                        $this->logPlaceBet(
+                            $batchRequest, $request, $tx, 'failed',
+                            $request->request_time, $transactionMessage,
+                            $beforeTransactionBalance, $beforeTransactionBalance
+                        );
+                        DB::rollBack(); // Or commit, but rollback is more "traditional" if nothing changed
                         $responseData[] = [
                             'member_account' => $memberAccount,
                             'product_code' => (int) $productCode,
                             'before_balance' => $this->formatBalance($beforeTransactionBalance, $request->currency),
-                            'balance' => $this->formatBalance($beforeTransactionBalance, $request->currency), // Balance doesn't change
-                            'code' => SeamlessWalletCode::InsufficientBalance->value,
-                            'message' => 'Insufficient Balance',
+                            'balance' => $this->formatBalance($beforeTransactionBalance, $request->currency),
+                            'code' => $transactionCode,
+                            'message' => $transactionMessage,
                         ];
-                        DB::commit(); // Commit the transaction to release locks, but no wallet change
-                        // Pass $memberAccount to logPlaceBet to ensure it's logged
-                        $this->logPlaceBet($batchRequest, $request, $tx, 'failed', $request->request_time, 'Insufficient Balance', $beforeTransactionBalance, $beforeTransactionBalance);
-                        continue; // Skip to next transaction in batch
+
+                        continue;
                     }
 
                     // Perform the withdrawal through wallet service
