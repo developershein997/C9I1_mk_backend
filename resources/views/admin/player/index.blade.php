@@ -18,10 +18,16 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-12">
-                    <div class="d-flex justify-content-end mb-3">
-                        <a href="{{ route('admin.agent.player.create') }}" class="btn btn-success " style="width: 100px;"><i
-                                class="fas fa-plus text-white  mr-2"></i>Create</a>
-                    </div>
+                    @can('agent_access')
+                        <div class="d-flex justify-content-end mb-3">
+                            <a href="{{ route('admin.agent.player.create') }}" class="btn btn-success" style="width: 100px;">
+                                <i class="fas fa-plus text-white mr-2"></i>Create
+                            </a>
+                        </div>
+                    @endcan
+
+
+
                     <div class="card " style="border-radius: 20px;">
                         <div class="card-header">
                             <h3>Player Lists</h3>
@@ -41,9 +47,9 @@
                                     <!-- <th>W/L</th> -->
                                     {{-- <th>CreatedAt</th> --}}
                                     @can('subagent_access')
-                                    <th>Action</th>
-                                    <th>Transaction</th>
-                                    <!-- <th>TransferLog</th> -->
+                                        <th>Action</th>
+                                        <th>Transaction</th>
+                                        <!-- <th>TransferLog</th> -->
                                     @endcan
                                 </thead>
                                 <tbody>
@@ -65,76 +71,77 @@
                                                     <td class="text-bold">{{ number_format($user->balanceFloat) }}</td>
                                                     <!-- <td>{{ $user->total_spin }}</td> -->
                                                     <!-- <td>{{ number_format($user->total_bet_amount, 2) }}</td>
-                                                    <td>{{ number_format($user->total_payout_amount, 2) }}</td>
-                                                    <td>{{ number_format($user->total_payout_amount - $user->total_bet_amount, 2) }}</td> -->
+                                                            <td>{{ number_format($user->total_payout_amount, 2) }}</td>
+                                                            <td>{{ number_format($user->total_payout_amount - $user->total_bet_amount, 2) }}</td> -->
                                                     @can('subagent_access')
-                                                    <td>
-                                                        @if ($user->status == 1)
-                                                            <a onclick="event.preventDefault(); document.getElementById('banUser-{{ $user->id }}').submit();"
-                                                                class="me-2" href="#" data-bs-toggle="tooltip"
-                                                                data-bs-original-title="Active Player">
-                                                                <i class="fas fa-user-check text-success"
-                                                                    style="font-size: 20px;"></i>
+                                                        <td>
+                                                            @if ($user->status == 1)
+                                                                <a onclick="event.preventDefault(); document.getElementById('banUser-{{ $user->id }}').submit();"
+                                                                    class="me-2" href="#" data-bs-toggle="tooltip"
+                                                                    data-bs-original-title="Active Player">
+                                                                    <i class="fas fa-user-check text-success"
+                                                                        style="font-size: 20px;"></i>
+                                                                </a>
+                                                            @else
+                                                                <a onclick="event.preventDefault(); document.getElementById('banUser-{{ $user->id }}').submit();"
+                                                                    class="me-2" href="#" data-bs-toggle="tooltip"
+                                                                    data-bs-original-title="InActive Player">
+                                                                    <i class="fas fa-user-slash text-danger"
+                                                                        style="font-size: 20px;"></i>
+                                                                </a>
+                                                            @endif
+                                                            <form class="d-none" id="banUser-{{ $user->id }}"
+                                                                action="{{ route('admin.player.ban', $user->id) }}"
+                                                                method="post">
+                                                                @csrf
+                                                                @method('PUT')
+                                                            </form>
+                                                            <a class="me-1"
+                                                                href="{{ route('admin.player.getChangePassword', $user->id) }}"
+                                                                data-bs-toggle="tooltip"
+                                                                data-bs-original-title="Change Password">
+                                                                <i class="fas fa-lock text-info" style="font-size: 20px;"></i>
                                                             </a>
-                                                        @else
-                                                            <a onclick="event.preventDefault(); document.getElementById('banUser-{{ $user->id }}').submit();"
-                                                                class="me-2" href="#" data-bs-toggle="tooltip"
-                                                                data-bs-original-title="InActive Player">
-                                                                <i class="fas fa-user-slash text-danger"
-                                                                    style="font-size: 20px;"></i>
+                                                            <a class="me-1"
+                                                                href="{{ route('admin.player.edit', $user->id) }}"
+                                                                data-bs-toggle="tooltip" data-bs-original-title="Edit Agent">
+                                                                <i class="fas fa-edit text-info" style="font-size: 20px;"></i>
                                                             </a>
-                                                        @endif
-                                                        <form class="d-none" id="banUser-{{ $user->id }}"
-                                                            action="{{ route('admin.player.ban', $user->id) }}"
-                                                            method="post">
-                                                            @csrf
-                                                            @method('PUT')
-                                                        </form>
-                                                        <a class="me-1"
-                                                            href="{{ route('admin.player.getChangePassword', $user->id) }}"
-                                                            data-bs-toggle="tooltip"
-                                                            data-bs-original-title="Change Password">
-                                                            <i class="fas fa-lock text-info" style="font-size: 20px;"></i>
-                                                        </a>
-                                                        <a class="me-1" href="{{ route('admin.player.edit', $user->id) }}"
-                                                            data-bs-toggle="tooltip" data-bs-original-title="Edit Agent">
-                                                            <i class="fas fa-edit text-info" style="font-size: 20px;"></i>
-                                                        </a>
 
-                                                    </td>
-                                                    <td>
-                                                        <a href="{{ route('admin.player.getCashIn', $user->id) }}"
-                                                            data-bs-toggle="tooltip"
-                                                            data-bs-original-title="Deposit To Player"
-                                                            class="btn btn-info btn-sm">
-                                                            <i class="fas fa-plus text-white me-1"></i>
-                                                            Deposit
-                                                        </a>
-                                                        <a href="{{ route('admin.player.getCashOut', $user->id) }}"
-                                                            data-bs-toggle="tooltip"
-                                                            data-bs-original-title="WithDraw To Player"
-                                                            class="btn btn-info btn-sm">
-                                                            <i class="fas fa-minus text-white me-1"></i>
-                                                            Withdrawl
-                                                        </a>
+                                                        </td>
+                                                        <td>
+                                                            <a href="{{ route('admin.player.getCashIn', $user->id) }}"
+                                                                data-bs-toggle="tooltip"
+                                                                data-bs-original-title="Deposit To Player"
+                                                                class="btn btn-info btn-sm">
+                                                                <i class="fas fa-plus text-white me-1"></i>
+                                                                Deposit
+                                                            </a>
+                                                            <a href="{{ route('admin.player.getCashOut', $user->id) }}"
+                                                                data-bs-toggle="tooltip"
+                                                                data-bs-original-title="WithDraw To Player"
+                                                                class="btn btn-info btn-sm">
+                                                                <i class="fas fa-minus text-white me-1"></i>
+                                                                Withdrawl
+                                                            </a>
 
-                                                        <a href="{{ route('admin.logs', $user->id) }}"
-                                                            data-bs-toggle="tooltip" data-bs-original-title="Reports"
-                                                            class="btn btn-info btn-sm">
-                                                            <i class="fas fa-right-left text-white me-1"></i>
-                                                            Logs
-                                                        </a>
-                                                       
-                                                        <a href="{{ route('admin.subacc.player.report_detail', $user->id) }}"
-                                                            data-bs-toggle="tooltip" data-bs-original-title="Reports"
-                                                            class="btn btn-info btn-sm ">
-                                                            <i class="fas fa-right-left text-white me-1"></i>
-                                                            Reports
-                                                        </a>
-                                                    </td>
-                                                    <!-- <td>
-                                                        <a href="{{ route('admin.transfer-logs.index') }}">TransferLog</a><br>
-                                                    </td> -->
+                                                            <a href="{{ route('admin.logs', $user->id) }}"
+                                                                data-bs-toggle="tooltip" data-bs-original-title="Reports"
+                                                                class="btn btn-info btn-sm">
+                                                                <i class="fas fa-right-left text-white me-1"></i>
+                                                                Logs
+                                                            </a>
+
+                                                            <a href="{{ route('admin.subacc.player.report_detail', $user->id) }}"
+                                                                data-bs-toggle="tooltip" data-bs-original-title="Reports"
+                                                                class="btn btn-info btn-sm ">
+                                                                <i class="fas fa-right-left text-white me-1"></i>
+                                                                Reports
+                                                            </a>
+                                                        </td>
+                                                        <!-- <td>
+                                                                        <a href="{{ route('admin.transfer-logs.index') }}">TransferLog</a><br>
+                                                                    </td> -->
                                                     @endcan
                                                 </tr>
                                             @endforeach

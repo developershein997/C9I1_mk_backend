@@ -27,7 +27,7 @@
                             <h3>Sub Account Lists</h3>
                         </div>
                         <div class="card-body">
-                            <table id="mytable" class="table table-bordered table-hover">
+                            <table id="mytable" class="table table-bordered table-hover table-responsive">
                                 <thead>
                                     <th>#</th>
                                     <th>SubAccId</th>
@@ -94,7 +94,7 @@
                                                         </a>
 
                                                     </td>
-                                                    
+
                                                 </tr>
                                             @endforeach
                                         @else

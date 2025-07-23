@@ -17,7 +17,7 @@ class PermissionRoleTableSeeder extends Seeder
             'transfer_log', 'make_transfer',
             'game_type_access', 'provider_access', 'provider_create', 'provider_edit', 'provider_delete', 'provider_index',
         ],
-       
+
         'Agent' => [
             'agent_access',
             'subagent_index', 'subagent_create', 'subagent_edit', 'subagent_delete',
