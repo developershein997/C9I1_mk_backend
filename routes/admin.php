@@ -74,6 +74,7 @@ Route::group([
     Route::get('agent-changepassword/{id}', [AgentController::class, 'getChangePassword'])->name('agent.getChangePassword');
     Route::post('agent-changepassword/{id}', [AgentController::class, 'makeChangePassword'])->name('agent.makeChangePassword');
     Route::get('agent-profile/{id}', [AgentController::class, 'agentProfile'])->name('agent.profile');
+    //  Route::get('agent-index', [AgentController::class,'newIndex']);
     // agent end
 
     // sub-agent start
