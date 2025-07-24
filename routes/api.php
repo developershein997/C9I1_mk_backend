@@ -149,17 +149,17 @@ Route::prefix('v1')->group(function () {
 //     return $request->user();
 // });
 
-Route::post('/auth/login', [LoginController::class, 'login']);
-Route::post('/auth/logout', [LoginController::class, 'logout']);
+//Route::post('/auth/login', [LoginController::class, 'login']);
+//Route::post('/auth/logout', [LoginController::class, 'logout']);
 
 Route::middleware(['auth:sanctum'])->group(function () {
-    Route::get('/profile', [ProfileController::class, 'profile']);
+    //Route::get('/profile', [ProfileController::class, 'profile']);
     Route::post('/change-password', [AuthController::class, 'changePassword']);
     //Route::get('/banks', [BankControllerAlias::class, 'all']);
-    Route::get('/promotions', [PromotionControllerAlias::class, 'index']);
-    Route::get('/game-list', [GameController::class, 'gameList']);
-    Route::get('/launch-game', [LaunchGameController::class, 'launchGame']);
-    Route::get('/wallet-balance', [WalletController::class, 'balance']);
+    //Route::get('/promotions', [PromotionControllerAlias::class, 'index']);
+    //Route::get('/game-list', [GameController::class, 'gameList']);
+    //Route::get('/launch-game', [LaunchGameController::class, 'launchGame']);
+    //Route::get('/wallet-balance', [WalletController::class, 'balance']);
 });
 
 // DigitBet API routes, protected by sanctum middleware

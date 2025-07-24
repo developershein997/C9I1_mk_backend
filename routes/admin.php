@@ -58,7 +58,7 @@ Route::group([
     Route::resource('text', BannerTextController::class);
     Route::resource('/promotions', PromotionController::class);
     Route::resource('contact', ContactController::class);
-    Route::resource('paymentTypes', PaymentTypeController::class);
+    //Route::resource('paymentTypes', PaymentTypeController::class);
     Route::resource('bank', BankController::class);
     // Route::resource('product', ProductController::class);
 
