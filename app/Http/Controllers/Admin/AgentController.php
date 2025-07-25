@@ -84,8 +84,8 @@ class AgentController extends Controller
         // if (! Gate::allows('agent_index')) {
         //     abort(403);
         // }
-
-        $users = User::with(['roles', 'children.poneWinePlayer'])->whereHas('roles', fn ($q) => $q->where('role_id', self::AGENT_ROLE))
+// 'children.poneWinePlayer'
+        $users = User::with(['roles'])->whereHas('roles', fn ($q) => $q->where('role_id', self::AGENT_ROLE))
             ->select('id', 'name', 'user_name', 'phone', 'status', 'referral_code')
             ->where('agent_id', auth()->id())
             ->orderBy('created_at', 'desc')
