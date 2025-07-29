@@ -276,4 +276,12 @@ class HomeController extends Controller
 
     // updated by KS
 
+        public function profileIndex($id)
+    {
+        $user = User::find($id);
+
+      return view('admin.change_password',compact('user'));
+    }
+
+
 }
