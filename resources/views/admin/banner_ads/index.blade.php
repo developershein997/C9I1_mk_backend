@@ -56,7 +56,7 @@
                                                     style="font-size: 20px;"></i></a>
                                                 <a href="{{ route('admin.adsbanners.show', $banner->id) }}"
                                                     data-bs-toggle="tooltip" data-bs-original-title="Preview Banner Detail">
-                                                    <i class="fa-solid fa-eye  text-success " style="font-size: 20px;"></i>
+                                                    <i class="fas fa-eye  text-success " style="font-size: 20px;"></i>
                                                 </a>
                                                 <form class="d-inline"
                                                     action="{{ route('admin.adsbanners.destroy', $banner->id) }}"
