@@ -1,6 +1,6 @@
 @extends('layouts.master')
 @section('content')
-    <section class="content-header">
+    {{-- <section class="content-header">
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
@@ -14,31 +14,38 @@
                 </div>
             </div>
         </div><!-- /.container-fluid -->
-    </section>
+    </section> --}}
 
     <!-- Main content -->
-    <section class="content">
+    <section class="content pt-lg-5 pt-md-5 pt-sm-3 pt-3">
         <div class="container-fluid">
-            <div class="card">
+            <div class="card col-lg-6 offset-lg-3 col-md-6 offset-md-3 col-10 offset-1">
                 <div class="card-header">
-                    <h3 class="card-title">
-                        <span>
-                            <a href="{{ route('home') }}" class="btn btn-primary">
-                                <i class="fas fa-arrow-left" style="font-size: 20px;"></i> Back
-                            </a>
-                        </span>
+                    <h3 class="fw-bold">
+                        Profile
                     </h3>
                 </div>
                 <form method="POST" action="{{ route('admin.updatePassword', $user->id) }}">
                     @csrf
                     <div class="card-body">
                         <div class="row">
-                            <div class="col-md-6">
-                                <div class="form-group">
+                              <div class="row col-12">
+                                <div class="form-group  col-md-6">
+                                    <label>UserName<span class="text-danger">*</span></label>
+                                    <div>{{$user->user_name}}</div>
+                                </div>
+                                   <div class="form-group col-md-6">
+                                    <label>Referral Code<span class="text-danger">*</span></label>
+                                    <div>{{$user->referral_code}} </div>
+                                </div>
+                            </div>
+                            <div class="row col-12">
+
+                                 <div class="form-group col-md-6">
                                     <label>New Password<span class="text-danger">*</span></label>
                                     <input type="text" class="form-control" name="password">
                                 </div>
-                                <div class="form-group">
+                                <div class="form-group col-md-6">
                                     <label>Confirm Password<span class="text-danger">*</span></label>
                                     <input type="text" class="form-control" name="password_confirmation">
                                     @error('password')
@@ -49,7 +56,9 @@
                         </div>
                     </div>
                     <div class="card-footer">
-                        <button type="submit" class="btn btn-success">Update</button>
+                        <div class="text-right">
+                             <button type="submit" class="btn btn-success">Update</button>
+                        </div>
                     </div>
                 </form>
             </div>

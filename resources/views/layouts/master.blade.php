@@ -73,7 +73,7 @@
                 <!--end::Messages Dropdown Menu-->
                 <li class="nav-item">
                     <a class="nav-link"
-                        href="{{ route('admin.changePassword', \Illuminate\Support\Facades\Auth::id()) }}">
+                         href="{{ route('admin.profile_index',$id = \Illuminate\Support\Facades\Auth::id()) }}">
                         {{ auth()->user()->name }}
                         @if (auth()->user()->referral_code)
                             | {{ auth()->user()->referral_code }}
@@ -137,6 +137,16 @@
                             </a>
                         </li>
 
+                        <li class="nav-item ">
+                            <a href="{{ route('admin.profile_index',$id=auth()->user()->id) }}"
+                                class="nav-link {{ Route::current()->getName() == 'admin.profile_index' ? 'active' : '' }}">
+                                <i class="far fa-user"></i>
+                                <p>
+                                    Profile
+                                </p>
+                            </a>
+                        </li>
+
 
 
 
@@ -155,7 +165,7 @@
                             <li class="nav-item">
                                 <a href="{{ route('admin.player.index') }}"
                                     class="nav-link {{ Route::current()->getName() == 'admin.player.index' ? 'active' : '' }}">
-                                    <i class="far fa-user"></i>
+                                    <i class="fas fa-users"></i>
                                     <p>
                                         Player List
                                     </p>

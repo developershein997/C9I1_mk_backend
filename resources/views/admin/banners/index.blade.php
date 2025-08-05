@@ -55,7 +55,7 @@
                                                     style="font-size: 20px;"></i></a>
                                                 <a href="{{ route('admin.banners.show', $banner->id) }}"
                                                     data-bs-toggle="tooltip" data-bs-original-title="Preview Banner Detail" >
-                                                    <i class="fa-solid fa-eye  text-success " style="font-size: 20px;"></i>
+                                                    <i class="fas fa-eye  text-success " style="font-size: 20px;"></i>
 
                                                 </a>
                                                 <form class="d-inline"
@@ -65,7 +65,8 @@
                                                     @method('DELETE')
                                                     <button type="submit" class="btn transparent-btn" data-bs-toggle="tooltip"
                                                         data-bs-original-title="Delete Banner">
-                                                        <i class="fa-solid fa-trash  text-danger"  style="font-size: 20px;"></i>
+                                                        <i class="fas fa-trash  text-danger"  style="font-size: 20px;"></i>
+
                                                     </button>
                                                 </form>
                                             </td>
