@@ -32,7 +32,8 @@ class PlaceBet extends Model
     {
         return $this->belongsTo(User::class, 'member_account', 'user_name');
     }
-
+    
+    // to get mm <report></report>
      protected static function boot()
     {
         parent::boot();
