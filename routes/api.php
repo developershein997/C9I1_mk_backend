@@ -15,8 +15,11 @@ use App\Http\Controllers\Api\V1\DigitGame\DigitSlotController;
 use App\Http\Controllers\Api\V1\Game\GameController;
 use App\Http\Controllers\Api\V1\Game\GSCPlusProviderController;
 use App\Http\Controllers\Api\V1\Game\LaunchGameController;
-use App\Http\Controllers\Api\V1\Game\ProviderTransactionCallbackController;
-use App\Http\Controllers\Api\V1\Game\ShanLaunchGameController;
+//use App\Http\Controllers\Api\V1\Game\ProviderTransactionCallbackController;
+use App\Http\Controllers\Api\V1\ShanLaunchGameController;
+use App\Http\Controllers\Api\V1\BalanceUpdateCallbackController;
+use App\Http\Controllers\Api\V1\ShanGetBalanceController;
+
 //use App\Http\Controllers\Api\V1\Game\ShanPlayerHistoryController;
 use App\Http\Controllers\Api\V1\gplus\Webhook\DepositController;
 use App\Http\Controllers\Api\V1\gplus\Webhook\GameListController;
@@ -26,7 +29,7 @@ use App\Http\Controllers\Api\V1\gplus\Webhook\PushBetDataController;
 use App\Http\Controllers\Api\V1\gplus\Webhook\WithdrawController;
 use App\Http\Controllers\Api\V1\Promotion\PromotionController as PromotionControllerAlias;
 use App\Http\Controllers\Api\V1\PromotionController;
-use App\Http\Controllers\Api\V1\Shan\ShanGetBalanceController;
+//use App\Http\Controllers\Api\V1\Shan\ShanGetBalanceController;
 use App\Http\Controllers\Api\V1\Shan\ShanTransactionController;
 use App\Http\Controllers\Api\V1\Wallet\WalletController;
 use App\Http\Controllers\Api\V1\WithDrawRequestController;
@@ -64,7 +67,22 @@ Route::prefix('v1/api/seamless')->group(function () {
     Route::post('pushbetdata', [PushBetDataController::class, 'pushBetData']);
 });
 
+// shan route start
 Route::post('/transactions', [ShanTransactionController::class, 'ShanTransactionCreate'])->middleware('transaction');
+
+Route::group(['prefix' => 'shan'], function () {
+    Route::post('balance', [ShanGetBalanceController::class, 'getBalance']);
+    Route::post('/client/balance-update', [BalanceUpdateCallbackController::class, 'handleBalanceUpdate']); 
+});
+
+Route::middleware(['auth:sanctum'])->group(function () {
+    // route prefix shan 
+    Route::group(['prefix' => 'shankomee'], function () {
+        Route::post('launch-game', [ShanLaunchGameController::class, 'launchGame']);
+    });
+});
+
+// shan route end
 
 Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::post('/seamless/launch-game', [LaunchGameController::class, 'launchGame']);
@@ -99,7 +117,7 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::get('/evening-twod-bet-slips', [TwoDigitBetController::class, 'eveningSessionSlip']);
     Route::get('/two-d-daily-winners', [TwoDigitBetController::class, 'dailyWinners']);
     // shan launch game
-    Route::post('shan-launch-game', [ShanLaunchGameController::class, 'launch']);
+    //Route::post('shan-launch-game', [ShanLaunchGameController::class, 'launch']);
 
 Route::get('contact', [ContactController::class, 'get']);
 });
@@ -125,23 +143,23 @@ Route::get('/hot_game_lists', [GSCPlusProviderController::class, 'hotGameLists']
 //     Route::get('player-history', [ShanPlayerHistoryController::class, 'getPlayerHistory']);
 // });
 
-Route::group(['prefix' => 'shan'], function () {
-    Route::post('getbalance', [ShanGetBalanceController::class, 'getBalance']);
-    //Route::post('launch-game', [ShanLaunchGameController::class, 'launch']);
-});
+// Route::group(['prefix' => 'shan'], function () {
+//     Route::post('getbalance', [ShanGetBalanceController::class, 'getBalance']);
+//     //Route::post('launch-game', [ShanLaunchGameController::class, 'launch']);
+// });
 
-// provider shan api
-Route::group(['prefix' => 'provider/shan'], function () {
-    Route::post('ShanGetBalances', [ShankomeeGetBalanceController::class, 'shangetbalance']);
-    Route::post('ShanLaunchGame', [ShankomeeGetBalanceController::class, 'LaunchGame']);
-});
+// // provider shan api
+// Route::group(['prefix' => 'provider/shan'], function () {
+//     Route::post('ShanGetBalances', [ShankomeeGetBalanceController::class, 'shangetbalance']);
+//     Route::post('ShanLaunchGame', [ShankomeeGetBalanceController::class, 'LaunchGame']);
+// });
 
-Route::prefix('v1')->group(function () {
-    Route::prefix('game')->group(function () {
-        Route::post('transactions', [ProviderTransactionCallbackController::class, 'handle']);
-        // Route::post('transactions', [ProviderTransactionCallbackController::class]);
-    });
-});
+// Route::prefix('v1')->group(function () {
+//     Route::prefix('game')->group(function () {
+//         Route::post('transactions', [ProviderTransactionCallbackController::class, 'handle']);
+//         // Route::post('transactions', [ProviderTransactionCallbackController::class]);
+//     });
+// });
 
 // Route::post('/callback', ProviderTransactionCallbackController::class);.
 
@@ -163,8 +181,8 @@ Route::middleware(['auth:sanctum'])->group(function () {
 });
 
 // DigitBet API routes, protected by sanctum middleware
-Route::middleware('auth:sanctum')->group(function () {
-    Route::post('/digitbet', [DigitBetController::class, 'store']); // Endpoint for placing a bet
-    Route::get('/digitbet/history', [DigitBetController::class, 'history']); // Endpoint for getting bet history
-    Route::post('/digit-slot/bet', [DigitSlotController::class, 'bet']);
-});
+// Route::middleware('auth:sanctum')->group(function () {
+//     Route::post('/digitbet', [DigitBetController::class, 'store']); // Endpoint for placing a bet
+//     Route::get('/digitbet/history', [DigitBetController::class, 'history']); // Endpoint for getting bet history
+//     Route::post('/digit-slot/bet', [DigitSlotController::class, 'bet']);
+// });

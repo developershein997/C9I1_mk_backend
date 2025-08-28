@@ -15,18 +15,18 @@ class ShanGetBalanceController extends Controller
         // Validate request
         $request->validate([
             'batch_requests' => 'required|array',
-            'operator_code'  => 'required|string',
-            'currency'       => 'required|string', // Still required in the payload, but only MMK used
-            'sign'           => 'required|string',
-            'request_time'   => 'required|integer',
+            'operator_code' => 'required|string',
+            'currency' => 'required|string', // Still required in the payload, but only MMK used
+            'sign' => 'required|string',
+            'request_time' => 'required|integer',
         ]);
 
         // Signature check
         $secretKey = Config::get('shan_key.secret_key');
         $expectedSign = md5(
-            $request->operator_code .
-            $request->request_time .
-            'getbalance' .
+            $request->operator_code.
+            $request->request_time.
+            'getbalance'.
             $secretKey
         );
         $isValidSign = strtolower($request->sign) === strtolower($expectedSign);
@@ -36,11 +36,12 @@ class ShanGetBalanceController extends Controller
             if (! $isValidSign) {
                 $results[] = [
                     'member_account' => $req['member_account'],
-                    'product_code'   => $req['product_code'],
-                    'balance'        => '0.00',
-                    'code'           => \App\Enums\SeamlessWalletCode::InvalidSignature->value,
-                    'message'        => 'Incorrect Signature',
+                    'product_code' => $req['product_code'],
+                    'balance' => '0.00',
+                    'code' => \App\Enums\SeamlessWalletCode::InvalidSignature->value,
+                    'message' => 'Incorrect Signature',
                 ];
+
                 continue;
             }
 
@@ -48,11 +49,12 @@ class ShanGetBalanceController extends Controller
             if (strtoupper($request->currency) !== 'MMK') {
                 $results[] = [
                     'member_account' => $req['member_account'],
-                    'product_code'   => $req['product_code'],
-                    'balance'        => '0.00',
-                    'code'           => \App\Enums\SeamlessWalletCode::InternalServerError->value,
-                    'message'        => 'Invalid Currency, only MMK allowed',
+                    'product_code' => $req['product_code'],
+                    'balance' => '0.00',
+                    'code' => \App\Enums\SeamlessWalletCode::InternalServerError->value,
+                    'message' => 'Invalid Currency, only MMK allowed',
                 ];
+
                 continue;
             }
 
@@ -61,18 +63,18 @@ class ShanGetBalanceController extends Controller
                 $balance = round($user->wallet->balanceFloat, 2);
                 $results[] = [
                     'member_account' => $req['member_account'],
-                    'product_code'   => $req['product_code'],
-                    'balance'        => (float) $balance,
-                    'code'           => \App\Enums\SeamlessWalletCode::Success->value,
-                    'message'        => 'Success',
+                    'product_code' => $req['product_code'],
+                    'balance' => (float) $balance,
+                    'code' => \App\Enums\SeamlessWalletCode::Success->value,
+                    'message' => 'Success',
                 ];
             } else {
                 $results[] = [
                     'member_account' => $req['member_account'],
-                    'product_code'   => $req['product_code'],
-                    'balance'        => '0.00',
-                    'code'           => \App\Enums\SeamlessWalletCode::MemberNotExist->value,
-                    'message'        => 'Member not found',
+                    'product_code' => $req['product_code'],
+                    'balance' => '0.00',
+                    'code' => \App\Enums\SeamlessWalletCode::MemberNotExist->value,
+                    'message' => 'Member not found',
                 ];
             }
         }
