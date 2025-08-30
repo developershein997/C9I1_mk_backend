@@ -62,20 +62,7 @@ class BalanceUpdateCallbackController extends Controller
             ], 500);
         }
 
-        // $payloadForSignature = $request->except('signature');
-        // ksort($payloadForSignature);
-        // $expectedSignature = hash_hmac('md5', json_encode($payloadForSignature), $providerSecretKey);
-
-        // if (!hash_equals($expectedSignature, $validated['signature'])) {
-        //     Log::warning('ClientSite: Invalid signature received', [
-        //         'received_signature' => $validated['signature'], 'expected_signature' => $expectedSignature,
-        //         'payload' => $request->all(), 'wager_code' => $validated['wager_code'],
-        //     ]);
-        //     return response()->json([
-        //         'status' => 'error', 'code' => 'INVALID_SIGNATURE', 'message' => 'Signature verification failed.',
-        //     ], 401);
-        // }
-
+        
         try {
             DB::beginTransaction();
 
@@ -135,15 +122,7 @@ class BalanceUpdateCallbackController extends Controller
                 $user->refresh();
             }
 
-            // Record the processed wager_code to prevent duplicates
-            // ProcessedWagerCallback::create([
-            //     'wager_code' => $validated['wager_code'],
-            //     'game_type_id' => 15,
-            //     'players' => $validated['players'],
-            //     'banker_balance' => $validated['banker_balance'],
-            //     'timestamp' => $validated['timestamp'],
-            //     'total_player_net' => $validated['total_player_net'],
-            //     'banker_amount_change' => $validated['banker_amount_change']]);
+            
 
             ProcessedWagerCallback::create([
                 'wager_code' => $validated['wager_code'],

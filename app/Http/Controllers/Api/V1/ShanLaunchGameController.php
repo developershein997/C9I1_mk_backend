@@ -58,6 +58,7 @@ class ShanLaunchGameController extends Controller
             ]);
 
             $agentCode = config('shan_key.agent_code');
+            $callBackUrl = config('shan_key.callback_url');
             $balance = $user->balanceFloat;
             $memberAccount = $user->user_name;
 
@@ -68,19 +69,14 @@ class ShanLaunchGameController extends Controller
                 'game_type' => $validatedData['game_type'],
                 'member_account' => $memberAccount,
                 'balance' => $balance,
+                'callback_url' => $callBackUrl,
             ];
 
             if ($request->has('nickname')) {
                 $payload['nickname'] = $request->input('nickname');
             }
 
-            // $agent = User::where('user_name', $agentCode)->first();
-            // if (!$agent) {
-            //     Log::error('Agent not found', ['agent_code' => $agentCode]);
-            //     return ApiResponseService::error(
-            //         SeamlessWalletCode::InternalServerError,
-            //         'Agent not found'
-            //     );
+            Log::info('Payload', ['payload' => $payload]);
 
             // Call provider API to get launch game URL
             $providerApiUrl = config('shan_key.api_url') . '/api/client/launch-game';

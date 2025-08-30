@@ -6,4 +6,5 @@ return [
     'transaction_key' => env('SHAN_TRANSACTION_KEY', ''),
     'api_url' => env('SHAN_SEAMLESS_API_URL', ''),
     'api_currency' => env('SHAN_SEAMLESS_API_CURRENCY', ''),
+    'callback_url' => env('SHAN_CALLBACK_URL', ''),
 ];
