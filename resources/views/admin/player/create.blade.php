@@ -35,8 +35,7 @@
                             <div class="col-lg-12 offset-lg-0 col-md-6 offset-md-3 col-sm-8 offset-sm-2 col-10 offset-1 ">
                                 <div class="form-group">
                                     <label>PlayerId<span class="text-danger">*</span></label>
-                                    <input type="text" class="form-control" name="user_name" value="{{ $player_name }}"
-                                        readonly>
+                                    <input type="text" class="form-control" name="user_name" value="{{ $player_name }}">
                                     @error('user_name')
                                         <div class="text-danger">{{ $message }}</div>
                                     @enderror
